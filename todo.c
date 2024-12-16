@@ -19,6 +19,15 @@ typedef struct {
 
 Task tasks[50], task;
 
+// clear the console
+void clear() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
 void add_task(); // Yangi vazifa qo'shish
 
 void list_all_tasks(); // Barcha vazifalarni ro'yxatini ko'rsatish
@@ -48,7 +57,7 @@ int main() {
         if(strcmp(menu, "start") == 0){
             // load the file
             load_file();
-            system("clear");
+            clear();
             list_all_tasks();
         }
 
@@ -183,7 +192,7 @@ void get_task_by_id(){
     if(id == 0 || id > n_rows) goto here;
 
     // Clear the screen
-    system("clear");
+    clear();
     
     // Print the table header
     printf("%-4s| %-16s| %-32s| %-7s\n", "ID", "Title", "Description", "Status");
